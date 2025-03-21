@@ -1,21 +1,31 @@
-﻿using Business.Models;
+﻿using Business.Dtos;
+using Business.Models;
 using Business.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Runtime.InteropServices;
 
 namespace WebApp.Controllers;
 
 public class ProjectsController : Controller
 {
     private readonly ProjectService _projectService;
-    private readonly ClientService _clientService;
 
-    public ProjectsController(ProjectService projectService, ClientService clientService)
+    public ProjectsController(ProjectService projectService)
     {
         _projectService = projectService;
-        _clientService = clientService;
 
     }
+
+
+    [HttpGet]
+    public async Task<IActionResult> Index()
+    {
+        var projects = await _projectService.GetProjectsAsync();
+        return View("~/Views/Admin/projects.cshtml", projects);
+    }
+
+
 
 
     [HttpPost]
@@ -40,4 +50,7 @@ public class ProjectsController : Controller
 
         return StatusCode(result);
     }
+
+  
+
 }

@@ -19,16 +19,17 @@ public class ClientService
     {
         try
         {
-            if (await _clientRepository.ExistsAsync(x => x.ClientName == form.ClientName))
+            if (await _clientRepository.ExistsAsync(x => x.Email == form.Email))
                 return 409;
 
             var newClient = new ClientEntity
             {
-                ClientName = form.ClientName,
+                FirstName = form.FirstName,
+                LastName = form.LastName,
                 Email = form.Email,
                 Phone = form.Phone,
-                Location = form.Location
-                
+                JobTitle = form.JobTitle,
+                DateOfBirth = form.DateOfBirth
             };
 
             await _clientRepository.AddAsync(newClient);

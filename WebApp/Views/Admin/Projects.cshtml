@@ -1,4 +1,7 @@
-﻿@{
+﻿@model IEnumerable<Business.Dtos.ProjectDto>
+
+
+@{
     ViewData["Title"] = "Projects";
 }
 
@@ -8,15 +11,42 @@
         <button data-modal="true" data-target="#addProjectModal" class="btn btn-blue btn-add" type="button">Add Project</button>
        
     </header>
+   
+
 
     <main class="content">
         <div class="surface">
-            <a class="project-links" href="">All</a>
+            
+            <a class="project-links" href="">All</a> 
             <a class="project-links" href=""> Started</a>
             <a class="project-links" href="">Completed</a>
+
+            <div class="projects-list">
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var project in Model)
+                    {
+                        <div class="project-item">
+                            <h3>@project.Name</h3>
+                            <p>Client: @project.ClientName</p>
+                            <p>Description: @project.Description</p>
+                            <p>Start Date: @project.StartDate.ToShortDateString()</p>
+                            <p>End Date: @project.EndDate?.ToShortDateString() </p>
+                            <p>Budget: @project.Budget?.ToString("C") </p>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>No projects available.</p> 
+                }
+               
+            </div>
+
+         
         </div>
     </main>
 
 </section>
 
-<partial name="Partials/Modals/_AddProjectModal" />
+<partial name="Partials/Modals/_AddProjectModal" model="new Business.Models.AddProjectForm()" />

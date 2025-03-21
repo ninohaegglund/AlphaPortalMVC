@@ -1,6 +1,9 @@
-﻿using Business.Models;
+﻿using Business.Dtos;
+using Business.Factories;
+using Business.Models;
 using Data.Entities;
 using Data.Interfaces;
+using Data.Repositories;
 
 namespace Business.Services;
 
@@ -28,7 +31,7 @@ public class ProjectService
                 Description = form.Description,
                 StartDate = form.StartDate,
                 EndDate = form.EndDate,
-                Budget = form.Budget,
+                Budget = form.Budget
 
             };
 
@@ -41,4 +44,25 @@ public class ProjectService
             return 500;
         }
     }
+    public async Task<IEnumerable<ProjectDto?>> GetProjectsAsync()
+    {
+        var entities = await _projectRepository.GetAllAsync();
+
+        var projectDtos = entities.Select(ProjectFactory.Create)
+                                   .Where(dto => dto != null)
+                                   .ToList();
+
+        return projectDtos;
+    }
+    public async Task<ProjectDto?> GetProjectAsync(int id)
+    {
+        var entities = await _projectRepository.GetAsync(x => x.Id == id);
+        if (entities == null)
+            return null!;
+        var projects = ProjectFactory.Create(entities);
+        return projects;
+    }
+
+
+
 }

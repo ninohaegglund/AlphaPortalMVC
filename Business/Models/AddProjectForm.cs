@@ -27,10 +27,12 @@ public class AddProjectForm
     [Display(Name = "Start Date", Prompt = "Select start date")]
     [Required(ErrorMessage = "Required")]
     public DateTime StartDate { get; set; }
+
     [DataType(DataType.Date)]
     [Display(Name = "End Date", Prompt = "Select end date")]
     [Required(ErrorMessage = "Required")]
     public DateTime EndDate { get; set; }
+
     [DataType(DataType.Currency)]
     [Display(Name = "Budget", Prompt = "Enter budget")]
     [Required(ErrorMessage = "Required")]

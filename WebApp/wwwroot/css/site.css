@@ -449,3 +449,53 @@ section > .content {
     width: 450px;
 }
 
+.navbar-nav {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.nav-item {
+    margin-right: 25px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    padding: 8px 12px;
+    color: black;
+    font-weight: bolder;
+    align-items: center;
+}
+
+    .nav-link:hover {
+        border-radius: 4px;
+        background-color: lightgray;
+    }
+
+.projects-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; 
+    padding: 20px;
+  
+}
+
+.project-item {
+    background-color: #ffffff; 
+    border: 1px solid #e0e0e0; 
+    border-radius: 15px;
+    padding: 16px;
+    width: calc(33.333% - 20px); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s; 
+}
+
+    .project-item:hover {
+        transform: translateY(-5px); 
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); 
+    }
+

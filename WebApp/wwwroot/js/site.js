@@ -35,6 +35,8 @@ function addFormErrorMessages(errors, form) {
 function initForms() {
     const forms = document.querySelectorAll('form')
     forms.forEach(form => {
+        if (form.id == "logoutForm") return;
+
         form.addEventListener('submit', async (e) => {
             e.preventDefault()
 
