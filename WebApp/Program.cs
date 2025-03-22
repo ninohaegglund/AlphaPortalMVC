@@ -1,3 +1,4 @@
+using Business.Interfaces;
 using Business.Services;
 using Data.Contexts;
 using Data.Entities;
@@ -26,8 +27,8 @@ builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configura
 
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
-builder.Services.AddScoped<ClientService>();
-builder.Services.AddScoped<ProjectService>();
+builder.Services.AddScoped<IClientService,ClientService>();
+builder.Services.AddScoped<IProjectService, ProjectService>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();

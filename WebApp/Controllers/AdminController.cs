@@ -1,4 +1,5 @@
-﻿using Business.Services;
+﻿using Business.Interfaces;
+using Business.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,8 +9,8 @@ namespace WebApp.Controllers;
 [Route("admin")]
 public class AdminController : Controller
 {
-    private readonly ProjectService _projectService;
-    public AdminController(ProjectService projectService)
+    private readonly IProjectService _projectService;
+    public AdminController(IProjectService projectService)
     {
         _projectService = projectService;   
     }

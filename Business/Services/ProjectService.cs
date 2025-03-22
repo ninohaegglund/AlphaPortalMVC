@@ -1,5 +1,6 @@
 ﻿using Business.Dtos;
 using Business.Factories;
+using Business.Interfaces;
 using Business.Models;
 using Data.Entities;
 using Data.Interfaces;
@@ -7,7 +8,7 @@ using Data.Repositories;
 
 namespace Business.Services;
 
-public class ProjectService
+public class ProjectService : IProjectService
 {
     private readonly IProjectRepository _projectRepository;
 

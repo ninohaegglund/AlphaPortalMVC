@@ -1,4 +1,5 @@
-﻿using Business.Models;
+﻿using Business.Interfaces;
+using Business.Models;
 using Business.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,9 +7,9 @@ namespace WebApp.Controllers;
 
 public class ClientsController : Controller
 {
-    private readonly ClientService _clientService;
+    private readonly IClientService _clientService;
 
-    public ClientsController(ClientService clientService)
+    public ClientsController(IClientService clientService)
     {
         _clientService = clientService; 
     }

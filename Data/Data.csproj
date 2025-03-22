@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="Contexts\Database\" />
+    <Folder Include="Contexts\Database\" />
   </ItemGroup>
 
 </Project>

@@ -17,7 +17,8 @@ public class ProjectFactory
             Description = entity.Description,
             StartDate = entity.StartDate,
             EndDate = entity.EndDate,
-            Budget = entity.Budget
+            Budget = entity.Budget,
+            
         };
     }
 
@@ -29,6 +30,8 @@ public class ProjectFactory
         StartDate = dto.StartDate,
         EndDate = dto.EndDate,
         Budget = dto.Budget,
+       
+        
    
     };
 
@@ -42,6 +45,7 @@ public class ProjectFactory
         StartDate = dto.StartDate,
         EndDate = dto.EndDate,
         Budget = dto.Budget,
+        
     };
 
     public static ProjectUpdateDto? Create(Project project)
@@ -59,6 +63,7 @@ public class ProjectFactory
                 StartDate = project.StartDate,
                 EndDate = project.EndDate,
                 Budget = project.Budget,
+                
 
             };
 

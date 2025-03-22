@@ -1,17 +1,19 @@
 ﻿using Business.Dtos;
+using Business.Interfaces;
 using Business.Models;
 using Business.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 namespace WebApp.Controllers;
 
 public class ProjectsController : Controller
 {
-    private readonly ProjectService _projectService;
+    private readonly IProjectService _projectService;
 
-    public ProjectsController(ProjectService projectService)
+    public ProjectsController(IProjectService projectService)
     {
         _projectService = projectService;
 
@@ -24,7 +26,6 @@ public class ProjectsController : Controller
         var projects = await _projectService.GetProjectsAsync();
         return View("~/Views/Admin/projects.cshtml", projects);
     }
-
 
 
 

@@ -1,15 +1,16 @@
-﻿using Business.Models;
+﻿using Business.Interfaces;
+using Business.Models;
 using Data.Entities;
 using Data.Interfaces;
 
 
 namespace Business.Services;
 
-public class ClientService
+public class ClientService : IClientService
 {
     private readonly IClientRepository _clientRepository;
 
-    public ClientService (IClientRepository clientRepository)
+    public ClientService(IClientRepository clientRepository)
     {
         _clientRepository = clientRepository;
     }
@@ -48,5 +49,5 @@ public class ClientService
         return clients;
 
     }
-    
+
 }
