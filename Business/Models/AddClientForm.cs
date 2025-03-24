@@ -33,7 +33,7 @@ public class AddClientForm
     [DataType(DataType.Date)]
     [Display(Name = "Date of Birth", Prompt = "Select Date of Birth")]
     [Required(ErrorMessage = "Required")]
-    public DateTime DateOfBirth { get; set; }
+    public DateTime DateOfBirth { get; set; } = DateTime.Now;
 
 
 

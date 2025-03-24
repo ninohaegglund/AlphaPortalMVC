@@ -18,6 +18,7 @@ public class ProjectFactory
             StartDate = entity.StartDate,
             EndDate = entity.EndDate,
             Budget = entity.Budget,
+            Status = entity.Status
             
         };
     }
@@ -30,6 +31,7 @@ public class ProjectFactory
         StartDate = dto.StartDate,
         EndDate = dto.EndDate,
         Budget = dto.Budget,
+        Status = dto.Status
        
         
    
@@ -45,6 +47,7 @@ public class ProjectFactory
         StartDate = dto.StartDate,
         EndDate = dto.EndDate,
         Budget = dto.Budget,
+        Status = dto.Status
         
     };
 
@@ -63,6 +66,7 @@ public class ProjectFactory
                 StartDate = project.StartDate,
                 EndDate = project.EndDate,
                 Budget = project.Budget,
+                Status = project.Status
                 
 
             };

@@ -37,7 +37,13 @@ public class AddProjectForm
     [Required(ErrorMessage = "Required")]
     [Range(0, double.MaxValue, ErrorMessage = "Please provide a positive number for the budget")]
     public decimal Budget { get; set; }
-  
+
+    [DataType(DataType.Text)]
+    [Display(Name = "Status", Prompt = "Enter status")]
+    [Required(ErrorMessage = "Required")]
+    public bool Status { get; set; }
+    public string StatusList { get; set; } = "Ongoing";
+
 
 
 }

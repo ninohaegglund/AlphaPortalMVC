@@ -26,7 +26,9 @@ builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configura
 
 
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
+builder.Services.AddScoped<IStatusRepository, StatusRepository>();
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
+builder.Services.AddScoped<IStatusService, StatusService>();
 builder.Services.AddScoped<IClientService,ClientService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
 

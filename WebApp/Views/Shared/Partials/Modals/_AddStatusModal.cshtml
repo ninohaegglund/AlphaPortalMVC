@@ -1,0 +1,28 @@
+﻿@model AddStatusForm
+
+<div id="addStatusModal" class="modal">
+    <div class="modal-content">
+        <header class="modal-header">
+            <h3>New Status</h3>
+            <button data-close="true" data-target="#addStatusModal" type="button" class="btn-close"></button>
+        </header>
+        <div class="modal-body">
+            <form novalidate method="post" asp-action="Add" asp-controller="Statuses">
+
+                <div class="form-group">
+                    <label asp-for="StatusName"></label>
+                    <div class="field-group">
+                        <input asp-for="StatusName" />
+                        <span asp-validation-for="StatusName"></span>
+                    </div>
+                </div>
+
+               
+
+                <button type="submit" class="btn btn-blue btn-submit">Add New Status</button>
+
+            </form>
+        </div>
+
+    </div>
+</div>

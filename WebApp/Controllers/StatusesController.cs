@@ -5,26 +5,25 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp.Controllers;
 
-public class ClientsController : Controller
+public class StatusesController : Controller
 {
-    private readonly IClientService _clientService;
+    private readonly IStatusService _statusService;
 
-    public ClientsController(IClientService clientService)
+    public StatusesController(IStatusService statusService)
     {
-        _clientService = clientService; 
+        _statusService = statusService; 
     }
 
     [HttpGet]
     public async Task<IActionResult> Index()
     {
-        var clients = await _clientService.GetClientsAsync();
+        var statuses = await _statusService.GetStatusesAsync();
 
-        return View("~/Views/Admin/clients.cshtml", clients);
+        return View("~/Views/Admin/statuses.cshtml", statuses);
     }
 
-
     [HttpPost]
-    public async Task<IActionResult> Add(AddClientForm form)
+    public async Task<IActionResult> Add(AddStatusForm form)
     {
 
         if (!ModelState.IsValid)
@@ -39,7 +38,7 @@ public class ClientsController : Controller
             return BadRequest(new { errors });
         }
 
-        var result = await _clientService.CreateClientAsync(form);
+        var result = await _statusService.CreateStatusAsync(form);
         if (result == 200)
             return Ok();
         return StatusCode(result);

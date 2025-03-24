@@ -449,6 +449,10 @@ section > .content {
     width: 450px;
 }
 
+#addStatusModal .modal-content {
+    width: 450px;
+}
+
 .navbar-nav {
     position: absolute;
     top: 10px;

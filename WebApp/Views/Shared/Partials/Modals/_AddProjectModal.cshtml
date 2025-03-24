@@ -58,6 +58,19 @@
                     </div>
                 </div>
 
+               <div class="form-group">
+                    <label asp-for="Status">Project Status</label>
+                    <div class="field-group">
+                        <select asp-for="Status" class="form-control">
+                            <option value="false">Ongoing</option>
+                            <option value="true">Completed</option>
+                      
+                        </select>
+                        <span asp-validation-for="Status"></span>
+                    </div>
+                </div>
+
+
                
 
                 <button type="submit" class="btn btn-blue btn-submit">Create</button>

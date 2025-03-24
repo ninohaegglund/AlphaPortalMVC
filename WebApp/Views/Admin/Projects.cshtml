@@ -16,10 +16,12 @@
 
     <main class="content">
         <div class="surface">
-            
-            <a class="project-links" href="">All</a> 
-            <a class="project-links" href=""> Started</a>
-            <a class="project-links" href="">Completed</a>
+
+            <a class="project-links" href="@Url.Action("Index", "Projects")">All</a>
+
+            <a class="project-links" href="@Url.Action("Index", "Projects", new { status = false })">Ongoing</a>
+
+            <a class="project-links" href="@Url.Action("Index", "Projects", new { status = true })">Completed</a>
 
             <div class="projects-list">
                 @if (Model != null && Model.Any())

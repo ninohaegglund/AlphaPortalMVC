@@ -10,5 +10,6 @@ public class ProjectDto
     public DateTime StartDate { get; set; }
     public DateTime? EndDate { get; set; }
     public decimal? Budget { get; set; }
-    public int StatusId { get; set; }
+    public bool Status { get; set; }
+    //public int StatusId { get; set; }
 }

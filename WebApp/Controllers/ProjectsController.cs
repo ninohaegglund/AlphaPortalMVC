@@ -21,9 +21,14 @@ public class ProjectsController : Controller
 
 
     [HttpGet]
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(bool? status)
     {
         var projects = await _projectService.GetProjectsAsync();
+
+        if (status.HasValue)
+        {
+            projects = projects.Where(p => p.Status == status.Value).ToList();
+        }
         return View("~/Views/Admin/projects.cshtml", projects);
     }
 

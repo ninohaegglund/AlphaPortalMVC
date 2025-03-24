@@ -1,7 +1,11 @@
-﻿using Business.Interfaces;
+﻿using Business.Dtos;
+using Business.Factories;
+using Business.Interfaces;
 using Business.Models;
 using Data.Entities;
 using Data.Interfaces;
+using Data.Repositories;
+using System.Diagnostics;
 
 
 namespace Business.Services;
@@ -43,11 +47,64 @@ public class ClientService : IClientService
         }
     }
 
-    public async Task<IEnumerable<ClientEntity>> GetClientsAsync()
+    public async Task<IEnumerable<ClientDto?>> GetClientsAsync()
     {
-        var clients = await _clientRepository.GetAllAsync();
-        return clients;
+        var entities = await _clientRepository.GetAllAsync();
 
+        var statusDtos = entities.Select(ClientFactory.Create)
+                                   .Where(dto => dto != null)
+                                   .ToList();
+        return statusDtos;
+    }
+
+    public async Task<ClientDto?> GetClientAsync(int id)
+    {
+        var entity = await _clientRepository.GetAsync(x => x.Id == id);
+        if (entity == null)
+            return null!;
+
+        var clientDto = ClientFactory.Create(entity);
+        return clientDto;
+    }
+
+    public async Task<bool> UpdateClientAsync(ClientUpdateDto dto)
+    {
+        try
+        {
+            ArgumentNullException.ThrowIfNull(dto);
+
+            var entity = ClientFactory.Create(dto);
+            if (entity == null)
+                return false;
+
+            var result = await _clientRepository.UpdateAsync(entity);
+            return result;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+            return false;
+        }
+    }
+    public async Task<bool> DeleteClientAsync(Status status)
+    {
+        try
+        {
+            ArgumentNullException.ThrowIfNull(status);
+
+            var entity = await _clientRepository.GetAsync(x => x.Id == status.Id);
+
+            if (entity == null)
+                return false;
+
+            var result = await _clientRepository.DeleteAsync(entity);
+            return result;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+            return false;
+        }
     }
 
 }

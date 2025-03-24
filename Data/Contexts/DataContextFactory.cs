@@ -10,7 +10,7 @@ public class DataContextFactory : IDesignTimeDbContextFactory<DataContext>
     {
  
         var optionsBuilder = new DbContextOptionsBuilder<DataContext>();
-        optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Nackademin\ASP.NET1\AlphaPortalMVC\Data\Contexts\Database\alpha_db.mdf;Integrated Security=True;Connect Timeout=30");
+        optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Nackademin\ASP.NET1\AlphaPortalMVC\Data\Contexts\Database\alpha_database.mdf;Integrated Security=True;Connect Timeout=30");
 
         return new DataContext(optionsBuilder.Options);
     }

@@ -5,17 +5,17 @@
 namespace Data.Migrations
 {
     /// <inheritdoc />
-    public partial class updateStatus : Migration
+    public partial class StatusName : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<int>(
+            migrationBuilder.AddColumn<bool>(
                 name: "Status",
                 table: "Projects",
-                type: "int",
+                type: "bit",
                 nullable: false,
-                defaultValue: 0);
+                defaultValue: false);
         }
 
         /// <inheritdoc />

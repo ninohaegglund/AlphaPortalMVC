@@ -1,10 +1,9 @@
 ﻿
 
-namespace Data.Entities;
+namespace Business.Dtos;
 
-public class StatusEntity
+public class StatusUpdateDto
 {
     public int Id { get; set; }
     public string StatusName { get; set; } = null!;
-
 }

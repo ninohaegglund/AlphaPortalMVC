@@ -5,6 +5,7 @@ using Business.Models;
 using Data.Entities;
 using Data.Interfaces;
 using Data.Repositories;
+using System.Diagnostics;
 
 namespace Business.Services;
 
@@ -32,7 +33,8 @@ public class ProjectService : IProjectService
                 Description = form.Description,
                 StartDate = form.StartDate,
                 EndDate = form.EndDate,
-                Budget = form.Budget
+                Budget = form.Budget,
+                Status = form.Status
 
             };
 
@@ -62,6 +64,46 @@ public class ProjectService : IProjectService
             return null!;
         var projects = ProjectFactory.Create(entities);
         return projects;
+    }
+
+    public async Task<bool> UpdateProjectAsync(ProjectUpdateDto dto)
+    {
+        try
+        {
+            ArgumentNullException.ThrowIfNull(dto);
+
+            var entity = ProjectFactory.Create(dto);
+            if (entity == null)
+                return false;
+
+            var result = await _projectRepository.UpdateAsync(entity);
+            return result;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+            return false;
+        }
+    }
+    public async Task<bool> DeleteProjectAsync(Project project)
+    {
+        try
+        {
+            ArgumentNullException.ThrowIfNull(project);
+
+            var entity = await _projectRepository.GetAsync(x => x.Id == project.Id);
+
+            if (entity == null)
+                return false;
+
+            var result = await _projectRepository.DeleteAsync(entity);
+            return result;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+            return false;
+        }
     }
 
 

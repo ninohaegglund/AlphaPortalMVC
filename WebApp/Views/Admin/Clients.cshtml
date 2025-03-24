@@ -1,4 +1,7 @@
-﻿@{
+﻿@model IEnumerable<Business.Dtos.ClientDto>
+
+
+@{
     ViewData["Title"] = "Team Members";
 }
 
@@ -10,10 +13,31 @@
 
     <main class="content">
         <div class="surface">
-            
+            <div class="projects-list">
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var client in Model)
+                    {
+                        <div class="project-item">
+                            <h3>@client.FirstName</h3>
+                            <h3>@client.LastName</h3>
+                            <p>Email: @client.Email</p>
+                            <p>Phone: @client.Phone</p>
+                            <p>Title: @client.JobTitle</p>
+                            <p>Date of Birth: @client.DateOfBirth?.ToShortDateString() </p>
+
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>No projects available.</p>
+                }
+
+            </div>
         </div>
     </main>
 
 </section>
 
-<partial name="Partials/Modals/_AddClientModal" />
+<partial name="Partials/Modals/_AddClientModal" model="new Business.Models.AddClientForm()" />

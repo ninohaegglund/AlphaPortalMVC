@@ -10,9 +10,13 @@ namespace WebApp.Controllers;
 public class AdminController : Controller
 {
     private readonly IProjectService _projectService;
-    public AdminController(IProjectService projectService)
+    private readonly IStatusService _statusService;
+    private readonly IClientService _clientService;
+    public AdminController(IProjectService projectService, IStatusService statusService, IClientService clientService)
     {
-        _projectService = projectService;   
+        _projectService = projectService;
+        _statusService = statusService;
+        _clientService = clientService;
     }
 
 
@@ -25,9 +29,17 @@ public class AdminController : Controller
 
 
     [Route("clients")]
-    public IActionResult Clients()
+    public async Task <IActionResult>  Clients()
     {
-        return View();
+        var clients = await _clientService.GetClientsAsync();
+        return View("clients", clients);
+    }
+
+    [Route("statuses")]
+    public async Task<IActionResult> Statuses()
+    {
+        var statuses = await _statusService.GetStatusesAsync();
+        return View("statuses", statuses);
     }
 
 }
