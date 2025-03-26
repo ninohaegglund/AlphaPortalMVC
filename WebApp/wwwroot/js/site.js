@@ -1,8 +1,10 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
-
-    initOpenModals()
-    initCloseButtons()
+    
+    initOpenModals();
+    initCloseButtons();
     initForms();
+    initDropdowns();
+   
 
 })
 
@@ -78,21 +80,48 @@ function initForms() {
     })
 }
 
+function initDropdowns() {
+    const dropdownButtons = document.querySelectorAll('[data-dropdown="true"]');
 
+    dropdownButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            event.stopPropagation();
+
+            const target = button.getAttribute('data-target');
+            const dropdown = document.querySelector(target);
+
+            if (dropdown) {
+                dropdown.classList.toggle('hidden');
+            }
+        });
+    });
+
+    document.addEventListener("click", (event) => {
+        const loginPartialContainer = document.getElementById("loginPartialContainer");
+
+        if (loginPartialContainer && !loginPartialContainer.contains(event.target) && !event.target.closest('[data-dropdown="true"]')) {
+            loginPartialContainer.classList.add("hidden");
+        }
+    });
+}
 
 function initOpenModals() {
     const modalButtons = document.querySelectorAll('[data-modal="true"]')
     modalButtons.forEach(button => {
         button.addEventListener('click', () => {
+            
             const target = button.getAttribute('data-target')
             const modal = document.querySelector(target)
 
             if (modal) {
                 modal.classList.add('flex')
+          
             }
-        })
-    })
+        });
+    });
 }
+
+
 
 function initCloseButtons() {
     const closeButtons = document.querySelectorAll('[data-close="true"]')

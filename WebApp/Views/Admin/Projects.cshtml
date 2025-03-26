@@ -29,12 +29,15 @@
                     @foreach (var project in Model)
                     {
                         <div class="project-item">
-                            <h3>@project.Name</h3>
-                            <p>Client: @project.ClientName</p>
-                            <p>Description: @project.Description</p>
-                            <p>Start Date: @project.StartDate.ToShortDateString()</p>
-                            <p>End Date: @project.EndDate?.ToShortDateString() </p>
-                            <p>Budget: @project.Budget?.ToString("C") </p>
+                            <div class="title-row">
+                                <img src="~/images/Alpha-portal-project-icons/purple-red.svg" class="project-icon" />
+                                <div>
+                                    <h3>@project.Name</h3>
+                                    <h6 class="client-text">@project.ClientName</h6>
+                                </div>
+                            </div>
+                            <p>@project.Description</p>
+                       
                         </div>
                     }
                 }

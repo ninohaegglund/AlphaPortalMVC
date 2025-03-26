@@ -1,3 +1,26 @@
 ﻿<header>
+    <div class="header-icons">
+      
+        <a href="#" class="header-icon" title="Notifications">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">3</span> 
+        </a>
 
+       
+        <a href="#" class="header-icon" title="Settings">
+            <i class="fas fa-cog"></i>
+        </a>
+
+        <a href="javascript:void(0)" class="user-avatar" data-dropdown="true" data-target="#loginPartialContainer">
+            <img src="~/images/avatars/avatar-template.svg" alt="User Avatar" class="avatar-icon">
+        </a>
+    
+    </div>
+
+  
+   
 </header>
+
+<div id="loginPartialContainer" class="login-dropdown hidden">
+    <partial name="_LoginPartial" />
+</div>

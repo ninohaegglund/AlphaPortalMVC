@@ -9,6 +9,11 @@
         <div class="modal-body">
             <form novalidate method="post" asp-action="Add" asp-controller="Projects">
 
+                <div class="upload-container">
+                    <img src="~/images/Upload image.svg" class="upload-icon" />
+                </div>
+               
+
                 <div class="form-group">
                     <label asp-for="Name"></label>
                     <div class="field-group">
@@ -35,7 +40,7 @@
 
                 <div class="form-group">
                     <label asp-for="StartDate"></label>
-                    <div class="field-group">
+                    <div class="field-group start-end-date">
                         <input asp-for="StartDate" />
                         <span asp-validation-for="StartDate"></span>
                     </div>
@@ -43,7 +48,7 @@
 
                 <div class="form-group">
                     <label asp-for="EndDate"></label>
-                    <div class="field-group">
+                    <div class="field-group start-end-date">
                         <input asp-for="EndDate" />
                         <span asp-validation-for="EndDate"></span>
                     </div>
@@ -60,7 +65,7 @@
 
                <div class="form-group">
                     <label asp-for="Status">Project Status</label>
-                    <div class="field-group">
+                    <div class="field-group ">
                         <select asp-for="Status" class="form-control">
                             <option value="false">Ongoing</option>
                             <option value="true">Completed</option>

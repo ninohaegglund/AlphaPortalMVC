@@ -123,8 +123,22 @@ html, body {
         display: grid;
         grid-template-columns: 1fr auto;
         gap: 5rem;
-        align-items: center;
+        align-items:center;
+       
     }
+
+.user-logotype {
+    display: flex;
+    margin-left: auto;
+  
+}
+
+        .user-logotype img {
+            width: 50px;
+            height: 50px;
+            
+         
+        }
 
     .portal > aside {
         grid-area: side;
@@ -143,6 +157,104 @@ html, body {
 
 .flex {
     display: flex !important;
+}
+
+.hidden {
+    display: none;
+}
+
+#loginPartialContainer.login-dropdown {
+    position: absolute;
+    top: 70px;
+    right: 80px;
+    background: white;
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    z-index: 1000;
+    width:400px;
+  
+}
+
+
+.navbar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+   
+}
+
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+}
+
+    .nav-link:hover {
+        border-radius: 4px;
+        background-color: whitesmoke;
+    }
+
+
+
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 40px; 
+    margin-left: auto;
+}
+
+.header-icon {
+    color: #666;
+    font-size: 18px;
+    position: relative;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+    .header-icon:hover {
+        color: #333;
+        transform: scale(1.1);
+    }
+
+
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff4757;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.avatar-icon {
+    display:flex;
+    width: 50px;
+    height: 50px;
 }
 
 
@@ -380,6 +492,14 @@ form {
         position: relative;
     }
 
+
+    .field-group.start-end-date input {
+        width: 48%;
+        
+    }
+
+   
+
 .input-validation-error,
 .input-validation-error:focus {
     border-color: var(--error-border-color);
@@ -420,11 +540,9 @@ section > .content {
     height: 100%;
 }
 
-.surface {
-    background-color: var(--surface-color);
+.surface {   
     padding: 2rem;
     border-radius: 16px;
-    box-shadow: 0 4px 4px 3px rgba(196,196,196, 0.1);
 }
 
 #clients {
@@ -453,32 +571,8 @@ section > .content {
     width: 450px;
 }
 
-.navbar-nav {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-}
 
-.nav-item {
-    margin-right: 25px;
-    display: flex;
-    align-items: center;
-}
 
-.nav-link {
-    text-decoration: none;
-    transition: all 0.3s ease;
-    font-size: 14px;
-    padding: 8px 12px;
-    color: black;
-    font-weight: bolder;
-    align-items: center;
-}
-
-    .nav-link:hover {
-        border-radius: 4px;
-        background-color: lightgray;
-    }
 
 .projects-list {
     display: flex;
@@ -489,17 +583,53 @@ section > .content {
 }
 
 .project-item {
-    background-color: #ffffff; 
-    border: 1px solid #e0e0e0; 
+    background-color: white;
+    border: 1px solid #e0e0e0;
     border-radius: 15px;
     padding: 16px;
-    width: calc(33.333% - 20px); 
+    width: calc(33.333% - 20px);
+    height: 300px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s; 
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
     .project-item:hover {
         transform: translateY(-5px); 
         box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); 
     }
+
+.title-row {
+    display: flex;
+    align-items: center;
+    gap: 16px; 
+}
+
+.project-icon {
+    
+    width: 56px;
+    height: 56px;
+ 
+}
+.upload-container {
+    display: flex;
+    justify-content: center;
+}
+
+.upload-icon {
+   
+    width: 150px;
+    height: 150px;
+    left: 686px;
+    top: 126px;
+}
+
+
+
+
+
+
+
+
+
+
 
