@@ -32,9 +32,16 @@
                             <div class="title-row">
                                 <img src="~/images/Alpha-portal-project-icons/purple-red.svg" class="project-icon" />
                                 <div>
-                                    <h3>@project.Name</h3>
+                                    <h3>@project.Name</h3>                                  
                                     <h6 class="client-text">@project.ClientName</h6>
+                                       
                                 </div>
+
+                                <a href="javascript:void(0)" class="more-avatar" data-dropdown="true" data-target="#dropdownPartialContainer">
+                                    <img src="~/images/More.svg" alt="More icon" class="more-icon">
+                                </a>
+                                                                                                     
+                               
                             </div>
                             <p>@project.Description</p>
                        
@@ -55,3 +62,6 @@
 </section>
 
 <partial name="Partials/Modals/_AddProjectModal" model="new Business.Models.AddProjectForm()" />
+<div id="dropdownPartialContainer" class="more-dropdown hidden">
+    <partial name="_DropdownPartial" />
+</div>

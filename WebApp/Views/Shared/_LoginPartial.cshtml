@@ -8,7 +8,7 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item">
-        <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+        <a id="manage" class="nav-link text-dark" @*asp-area="Identity" asp-page="/Account/Manage/Index"*@ title="Manage">
            <img src="~/images/avatars/avatar-template.svg" alt="User Avatar" class="avatar-icon">
             Hello @UserManager.GetUserAsync(User).Result?.FirstName!
         </a>

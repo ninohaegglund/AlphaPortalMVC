@@ -90,17 +90,42 @@ function initDropdowns() {
             const target = button.getAttribute('data-target');
             const dropdown = document.querySelector(target);
 
-            if (dropdown) {
+            if (!dropdown) return;
+
+            //normal toggle for logindropdown
+            if (target === "#loginPartialContainer") {
                 dropdown.classList.toggle('hidden');
+                return;
             }
+
+            if (!dropdown.classList.contains('hidden')) {
+                dropdown.classList.add('hidden');
+                return;
+            }
+
+            //else it's for the project dropdown
+            let rect = button.getBoundingClientRect();
+            dropdown.classList.remove('hidden');
+            let dropdownWidth = dropdown.offsetWidth;
+            dropdown.classList.add('hidden');
+
+            dropdown.style.top = `${rect.bottom + window.scrollY}px`;
+            dropdown.style.left = `${rect.left + window.scrollX - dropdownWidth + 20}px`;
+
+            
+            dropdown.classList.toggle("hidden");
         });
     });
 
     document.addEventListener("click", (event) => {
         const loginPartialContainer = document.getElementById("loginPartialContainer");
+        const dropwdownPartialContainer = document.getElementById("dropdownPartialContainer");
 
         if (loginPartialContainer && !loginPartialContainer.contains(event.target) && !event.target.closest('[data-dropdown="true"]')) {
             loginPartialContainer.classList.add("hidden");
+        }
+        if (dropwdownPartialContainer && !dropwdownPartialContainer.contains(event.target) && !event.target.closest('[data-dropdown="true"]')) {
+            dropwdownPartialContainer.classList.add("hidden");
         }
     });
 }
