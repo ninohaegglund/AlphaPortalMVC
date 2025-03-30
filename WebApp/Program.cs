@@ -21,6 +21,16 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.LoginPath = "/Identity/Account/Login"; 
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
 
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("LocalDb")));
 
@@ -39,6 +49,7 @@ var app = builder.Build();
 
 app.UseHsts();
 app.UseHttpsRedirection();
+app.UseCors("AllowAll");
 app.UseRouting();
 
 app.UseAuthentication();

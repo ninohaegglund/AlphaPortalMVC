@@ -8,12 +8,9 @@
 <section id="clients">
     <header class="page-headline">
         <h1 class="h2">@ViewData["Title"]</h1>
-        <button data-modal="true" data-target="#addProjectModal" class="btn btn-blue btn-add" type="button">Add Project</button>
-       
+        <button data-modal="true" data-target="#addProjectModal" class="btn btn-blue btn-add" type="button">Add Project</button>     
     </header>
    
-
-
     <main class="content">
         <div class="surface">
 
@@ -37,13 +34,30 @@
                                        
                                 </div>
 
-                                <a href="javascript:void(0)" class="more-avatar" data-dropdown="true" data-target="#dropdownPartialContainer">
+                                <a href="javascript:void(0)" class="more-avatar" data-dropdown="true" data-target="#dropdown-@project.Id">
                                     <img src="~/images/More.svg" alt="More icon" class="more-icon">
                                 </a>
                                                                                                      
                                
                             </div>
                             <p>@project.Description</p>
+                            <p>@project.Id</p>
+
+                            @*Dropdown-meny:*@
+
+                            <div class="more-dropdown-content" id="dropdown-@project.Id" style="display:none;">
+                                <button data-modal="true" data-target="#updateProjectModal" id="logout" type="button" class="nav-link btn btn-link text-dark border-0">
+                                    <img src="~/images/icons/Edit.svg" alt="More icon" class="more-icon"> <span class="edit-text">Edit</span>
+                                </button>
+
+                                <button id="logout" type="button" class="nav-link btn btn-link text-dark border-0">
+                                    <img src="~/images/icons/Add User.svg" alt="More icon" class="more-icon"> <span class="member-text">Add Member</span>
+                                </button>
+
+                                <button id="logout" type="button" class="nav-link btn btn-link text-dark border-0 delete-button" data-project-id="@project.Id">
+                                    <img src="~/images/icons/Delete.svg" alt="More icon" class="more-icon"> <span class="delete-text">Delete Project</span>
+                                </button>
+                            </div>
                        
                         </div>
                     }
@@ -62,6 +76,4 @@
 </section>
 
 <partial name="Partials/Modals/_AddProjectModal" model="new Business.Models.AddProjectForm()" />
-<div id="dropdownPartialContainer" class="more-dropdown hidden">
-    <partial name="_DropdownPartial" />
-</div>
+<partial name="Partials/Modals/_UpdateProjectModal" model="new Business.Models.UpdateProjectForm()" />

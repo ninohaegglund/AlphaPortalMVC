@@ -4,10 +4,10 @@
     initCloseButtons();
     initForms();
     initDropdowns();
-   
+    initDeleteButtons();
+    initDropdownToggles();
 
 })
-
 function clearFormErrorMessages(form) {
     form.querySelectorAll('[data-val="true"]').forEach(input => {
         input.classList.remove('input-validation-error')
@@ -18,7 +18,6 @@ function clearFormErrorMessages(form) {
         span.classList.remove('field-validation-error')
     })
 }
-
 function addFormErrorMessages(errors, form) {
     Object.keys(errors).forEach(key => {
         const input = form.querySelector(`[name="${key}"]`)
@@ -33,7 +32,6 @@ function addFormErrorMessages(errors, form) {
         }
     })
 }
-
 function initForms() {
     const forms = document.querySelectorAll('form')
     forms.forEach(form => {
@@ -79,7 +77,76 @@ function initForms() {
         })
     })
 }
+function initDeleteButtons() {
+    const deleteButtons = document.querySelectorAll(".delete-button");
 
+    deleteButtons.forEach(button => {
+        button.addEventListener("click", async function () {
+            const projectId = this.getAttribute("data-project-id");
+
+            if (!projectId) {
+                console.error("Project ID is missing");
+                return;
+            }
+            
+
+            try {
+                console.log(`Attempting to delete project with ID: ${projectId}`);
+                const res = await fetch(`/admin/projects/${projectId}`, {
+                    method: "DELETE"
+                });
+
+                if (res.ok) {
+                    window.location.reload();
+                } else {
+                    alert("Failed to delete the project.");
+                }
+            } catch (error) {
+                console.error("Error deleting project:", error);
+            }
+        });
+    });
+}
+function initDropdownToggles() {
+
+    // En metod som är genererad av ChatGPT 4, dess funktion är att
+    // öppna och stänga dropdown-menyer som finns i projects.cshtml.
+    const dropdownButtons = document.querySelectorAll(".more-avatar");
+
+    dropdownButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const dropdownId = this.getAttribute("data-target"); 
+            const dropdown = document.querySelector(dropdownId);
+
+            if (!dropdown) {
+                console.error("Dropdown not found for ID:", dropdownId);
+                return;
+            }
+
+            const isAlreadyOpen = dropdown.style.display === "block";
+
+          
+            document.querySelectorAll(".more-dropdown-content").forEach(d => {
+                d.style.display = "none";
+            });
+
+          
+            if (!isAlreadyOpen) {
+                dropdown.style.display = "block";
+            }
+
+        });
+    });
+    // Stänger dropdown när man klickar utanför
+    document.addEventListener("click", function (event) {
+        document.querySelectorAll(".more-dropdown-content").forEach(dropdown => {
+            if (!dropdown.contains(event.target) && !event.target.closest(".more-avatar")) {
+                dropdown.style.display = "none";
+            }
+        });
+    });
+
+}
 function initDropdowns() {
     const dropdownButtons = document.querySelectorAll('[data-dropdown="true"]');
 
@@ -98,20 +165,6 @@ function initDropdowns() {
                 return;
             }
 
-            if (!dropdown.classList.contains('hidden')) {
-                dropdown.classList.add('hidden');
-                return;
-            }
-
-            //else it's for the project dropdown
-            let rect = button.getBoundingClientRect();
-            dropdown.classList.remove('hidden');
-            let dropdownWidth = dropdown.offsetWidth;
-            dropdown.classList.add('hidden');
-
-            dropdown.style.top = `${rect.bottom + window.scrollY}px`;
-            dropdown.style.left = `${rect.left + window.scrollX - dropdownWidth + 20}px`;
-
             
             dropdown.classList.toggle("hidden");
         });
@@ -119,17 +172,13 @@ function initDropdowns() {
 
     document.addEventListener("click", (event) => {
         const loginPartialContainer = document.getElementById("loginPartialContainer");
-        const dropwdownPartialContainer = document.getElementById("dropdownPartialContainer");
 
         if (loginPartialContainer && !loginPartialContainer.contains(event.target) && !event.target.closest('[data-dropdown="true"]')) {
             loginPartialContainer.classList.add("hidden");
         }
-        if (dropwdownPartialContainer && !dropwdownPartialContainer.contains(event.target) && !event.target.closest('[data-dropdown="true"]')) {
-            dropwdownPartialContainer.classList.add("hidden");
-        }
+       
     });
 }
-
 function initOpenModals() {
     const modalButtons = document.querySelectorAll('[data-modal="true"]')
     modalButtons.forEach(button => {
@@ -145,9 +194,6 @@ function initOpenModals() {
         });
     });
 }
-
-
-
 function initCloseButtons() {
     const closeButtons = document.querySelectorAll('[data-close="true"]')
     closeButtons.forEach(button => {
@@ -164,7 +210,6 @@ function initCloseButtons() {
         })
     })
 }
-
 function closeModal(modal) {
     if (modal) {
         modal.classList.remove('flex')

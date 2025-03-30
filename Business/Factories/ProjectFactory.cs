@@ -12,19 +12,20 @@ public class ProjectFactory
     {
         return new ProjectDto
         {
+            Id = entity.Id,
             Name = entity.Name,
             ClientName = entity.ClientName,
             Description = entity.Description,
             StartDate = entity.StartDate,
             EndDate = entity.EndDate,
             Budget = entity.Budget,
-            Status = entity.Status
-            
+            Status = entity.Status            
         };
     }
 
     public static ProjectEntity? Create(ProjectDto dto) => dto == null ? null : new ProjectEntity
     {
+        Id = dto.Id,
         Name = dto.Name,
         ClientName = dto.ClientName,
         Description = dto.Description,
@@ -32,9 +33,7 @@ public class ProjectFactory
         EndDate = dto.EndDate,
         Budget = dto.Budget,
         Status = dto.Status
-       
-        
-   
+  
     };
 
 
@@ -47,8 +46,7 @@ public class ProjectFactory
         StartDate = dto.StartDate,
         EndDate = dto.EndDate,
         Budget = dto.Budget,
-        Status = dto.Status
-        
+        Status = dto.Status        
     };
 
     public static ProjectUpdateDto? Create(Project project)
@@ -67,8 +65,6 @@ public class ProjectFactory
                 EndDate = project.EndDate,
                 Budget = project.Budget,
                 Status = project.Status
-                
-
             };
 
             return entity;

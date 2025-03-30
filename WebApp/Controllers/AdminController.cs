@@ -5,8 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp.Controllers;
 
-[Authorize]
 [Route("admin")]
+
+
 public class AdminController : Controller
 {
     private readonly IProjectService _projectService;
@@ -25,6 +26,13 @@ public class AdminController : Controller
     {
         var projects = await _projectService.GetProjectsAsync();
         return View("projects", projects); 
+    }
+
+    [HttpGet("projects/{id}")]
+    public async Task<IActionResult> GetProject(int id)
+    {
+        var project = await _projectService.GetProjectAsync(id);
+        return project != null ? Ok(project) : NotFound();
     }
 
 

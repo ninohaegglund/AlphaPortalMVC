@@ -19,6 +19,15 @@ public class ProjectsController : Controller
 
     }
 
+   
+    [HttpGet("details/{id}")]
+    public async Task<IActionResult> GetProject(int id)
+    {
+        var project = await _projectService.GetProjectAsync(id);
+        return project != null ? Ok(project) : NotFound();
+    }
+    
+
 
     [HttpGet]
     public async Task<IActionResult> Index(bool? status)
@@ -31,7 +40,6 @@ public class ProjectsController : Controller
         }
         return View("~/Views/Admin/projects.cshtml", projects);
     }
-
 
 
     [HttpPost]
@@ -57,6 +65,43 @@ public class ProjectsController : Controller
         return StatusCode(result);
     }
 
-  
+    [HttpPut]
+    public async Task<IActionResult> Update(int id, ProjectUpdateDto dto)
+    {
+
+        if (!ModelState.IsValid)
+        {
+            var errors = ModelState
+                .Where(x => x.Value?.Errors.Count > 0)
+                .ToDictionary(
+                    kvp => kvp.Key,
+                    kvp => kvp.Value?.Errors.Select(x => x.ErrorMessage).ToArray()
+                );
+
+            return BadRequest(new { errors });
+        }
+
+        var result = await _projectService.UpdateProjectAsync(id, dto);
+
+        if (result)
+            return Ok();
+
+        return StatusCode(500);
+
+    }
+
+    [HttpDelete("admin/projects/{id}")]
+    public async Task<IActionResult> DeleteProject(int id)
+    {
+        var project = await _projectService.GetProjectAsync(id);
+
+        if (project == null)
+            return NotFound();
+
+        var deleted = await _projectService.DeleteProjectAsync(project);
+        return deleted ? Ok() : BadRequest();
+    }
+
+
 
 }

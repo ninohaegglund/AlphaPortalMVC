@@ -8,7 +8,7 @@ namespace Business.Interfaces
         Task<int> CreateProjectAsync(AddProjectForm form);
         Task<ProjectDto?> GetProjectAsync(int id);
         Task<IEnumerable<ProjectDto?>> GetProjectsAsync();
-        Task<bool> UpdateProjectAsync(ProjectUpdateDto dto);
-        Task<bool> DeleteProjectAsync(Project project);
+        Task<bool> UpdateProjectAsync(int id, ProjectUpdateDto dto);
+        Task<bool> DeleteProjectAsync(ProjectDto dto);
     }
 }

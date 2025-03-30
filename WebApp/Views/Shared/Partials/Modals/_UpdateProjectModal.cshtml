@@ -1,0 +1,87 @@
+﻿@model Business.Models.UpdateProjectForm
+
+<div id="updateProjectModal" class="modal">
+    <div class="modal-content">
+        <header class="modal-header">
+            <h3>Edit Project</h3>
+            <button data-close="true" data-target="#updateProjectModal" type="button" class="btn-close"></button>
+        </header>
+        <div class="modal-body">
+            <form novalidate method="post" asp-action="Edit" asp-controller="Projects">
+
+                <div class="upload-container">
+                    <img src="~/images/Edit image.svg" class="upload-icon" />
+                </div>
+               
+
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <div class="field-group">
+                        <input asp-for="Name" />
+                        <span asp-validation-for="Name"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ClientName"></label>
+                    <div class="field-group">
+                        <input asp-for="ClientName" />
+                        <span asp-validation-for="ClientName"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Description"></label>
+                    <div class="field-group">
+                        <textarea asp-for="Description"></textarea>
+                        <span asp-validation-for="Description"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="StartDate"></label>
+                    <div class="field-group start-end-date">
+                        <input asp-for="StartDate" />
+                        <span asp-validation-for="StartDate"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="EndDate"></label>
+                    <div class="field-group start-end-date">
+                        <input asp-for="EndDate" />
+                        <span asp-validation-for="EndDate"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Budget"></label>
+                    <div class="field-group input-icon">
+                        <i class="fa fa-btc"></i>
+                        <input asp-for="Budget" type="number" step="0.01" />
+                        <span asp-validation-for="Budget"></span>
+                    </div>
+                </div>
+
+               <div class="form-group">
+                    <label asp-for="Status">Project Status</label>
+                    <div class="field-group ">
+                        <select asp-for="Status" class="form-control">
+                            <option value="false">Ongoing</option>
+                            <option value="true">Completed</option>
+                      
+                        </select>
+                        <span asp-validation-for="Status"></span>
+                    </div>
+                </div>
+
+
+               
+
+                <button type="submit" class="btn btn-blue btn-submit">Save</button>
+
+            </form>
+        </div>
+
+    </div>
+</div>

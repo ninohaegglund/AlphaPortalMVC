@@ -66,32 +66,38 @@ public class ProjectService : IProjectService
         return projects;
     }
 
-    public async Task<bool> UpdateProjectAsync(ProjectUpdateDto dto)
+    public async Task<bool> UpdateProjectAsync(int id, ProjectUpdateDto dto)
+    {
+       
+            ArgumentNullException.ThrowIfNull(dto);
+
+            if (dto.Id <= 0)
+                return false;
+
+            var existingProject = await _projectRepository.GetAsync(x => x.Id == id);
+            if (existingProject == null)
+                return false;
+
+            existingProject.Name = dto.Name;
+            existingProject.Description = dto.Description;
+            existingProject.ClientName = dto.ClientName;
+            existingProject.StartDate = dto.StartDate;
+            existingProject.EndDate = dto.EndDate;
+            existingProject.Budget = dto.Budget;
+            existingProject.Status = dto.Status;         
+
+            return await _projectRepository.UpdateAsync(existingProject);
+           
+        }
+      
+    
+    public async Task<bool> DeleteProjectAsync(ProjectDto dto)
     {
         try
         {
             ArgumentNullException.ThrowIfNull(dto);
 
-            var entity = ProjectFactory.Create(dto);
-            if (entity == null)
-                return false;
-
-            var result = await _projectRepository.UpdateAsync(entity);
-            return result;
-        }
-        catch (Exception ex)
-        {
-            Debug.WriteLine(ex.Message);
-            return false;
-        }
-    }
-    public async Task<bool> DeleteProjectAsync(Project project)
-    {
-        try
-        {
-            ArgumentNullException.ThrowIfNull(project);
-
-            var entity = await _projectRepository.GetAsync(x => x.Id == project.Id);
+            var entity = await _projectRepository.GetAsync(x => x.Id == dto.Id);
 
             if (entity == null)
                 return false;
