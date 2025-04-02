@@ -35,12 +35,12 @@
                         {
                             if (remainingTime.TotalDays > 0)
                             {
-                                // Display days left
+                                
                                 timeLeftMessage = $"{Math.Ceiling(remainingTime.TotalDays)} day{(remainingTime.TotalDays > 1 ? "s" : "")} left";
                             }
                             else if (remainingTime.TotalDays <= 0)
                             {
-                                // If the end date has passed
+                                
                                 timeLeftMessage = "Project Completed";
                             }
                         }

@@ -809,6 +809,22 @@ section > .content {
        
     }
 
+#account {
+    width: 450px;
+    
+}
+
+#registerForm {
+    width: 450px;
+}
+
+#register {
+    color: var(--card-text-color);
+}
+
+#login {
+    color: var(--card-text-color);
+} 
 
 
 
