@@ -91,6 +91,64 @@
     --error-border-color: var(--red-semilight);
 }
 
+[data-mode="dark"] {
+    /* Skuggor & kanter */
+    --box-shadow: 0 5px 5px 1px rgba(0, 0, 0, 0.05);
+    --border-color: var(--dark-400);
+    --border-focus-color: var(--blue-semilight);
+    --divider-color: var(--dark-700);
+    /* Text & bakgrund */
+    --text-color: var(--white-400);
+    --text-muted-color: var(--gray-800);
+    --text-extra-muted-color: var(--gray-600);
+    --text-headline-color: var(--white-100);
+    --background-color: var(--dark-100);
+    --modal-background-color: var(--dark-400);/*Remove opacity plz*/
+    --orseperator-background-color: var(--white-100);
+    /* Länkar */
+    --link-color: var(--blue);
+    --link-hover-color: var(--blue-dark);
+    /* Navigation */
+    --navlink-text-color: var(--white-400);
+    --navlink-text-hover-color: var(--blue);
+    --navlink-text-active-color: var(--blue);
+    --navlink-background-color: transparent;
+    --navlink-background-hover-color: var(--blue-light-opacity);
+    --navlink-background-active-color: var(--blue-light-opacity);
+    /* Formulär */
+    --form-text-color: var(--dark-400);
+    --form-border-color: var(--white-100);
+    --form-background-color: var(--white-100);
+    --form-label-color: var(--dark-200);
+    --form-input-text-color: var(--dark-200);
+    --form-input-placeholder-color: var(--gray-600);
+    --form-input-background-color: var(--white-100);
+    --form-input-border-color: var(--gray-400);
+    --form-input-border-focus-color: var(--blue-semilight);
+    --form-error-input-text-color: var(--dark-200);
+    --form-error-input-background-color: var(--white-100);
+    --form-error-input-border-color: var(--red-semilight);
+    --form-error-input-border-focus-color: var(--blue-semilight);
+    --form-error-message-text-color: var(--red-dark);
+    --form-error-message-background-color: var(--red-light);
+    --form-error-message-border-color: var(--red-light);
+    --form-search-input-text-color: var(--white-200);
+    --form-search-input-placeholder-color: var(--gray-600);
+    --form-search-input-background-color: var(--dark-100);
+    --form-search-input-border-color: var(--dark-100);
+    --form-search-input-border-focus-color: var(--blue-dark);
+    /* Aviseringar */
+    --alert-notification-error-text-color: var(--red-dark);
+    --alert-notification-error-background-color: var(--red-light);
+    /* Kort */
+    --card-text-color: var(--white-400);
+    --card-border-color: var(--dark-400);
+    --card-background-color: var(--dark-400);
+    /* profil */
+    --profile-info-background-color: var(--dark-100);
+    --profile-info-text-color: var(--white-100);
+}
+
 /* structure */
 
 html, body {
@@ -166,31 +224,96 @@ html, body {
 
 #loginPartialContainer.login-dropdown {
     position: absolute;
-    top: 70px;
-    right: 80px;
-    background: white;
+    top: 60px;
+    right: 210px;
+    background-color: var(--modal-background-color);
     border: 1px solid var(--border-color);
     padding: 1rem;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 16px;
     z-index: 1000;
-    width:400px;
-  
+    width: 400px;
+
 }
+
+.profile-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 0.7rem;
+    margin: 0 0.7rem;
+   
+}
+
+    .profile-action .label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        
+    }
+
+
+/*   Dark Mode-toggle */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 22px;
+}
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+    }
+
+input:checked + .slider {
+    background-color: #2D99FF;
+}
+
+    input:checked + .slider:before {
+        transform: translateX(18px);
+    }
 
 .more-dropdown-content {
     position: absolute;
-    background: white;
-    border: 1px solid var(--border-color);
+    background-color: var(--modal-background-color);
+    border: 1px solid var(--card-border-color);
     top: 1rem;
     right: 1rem;
     margin-top: 20px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 16px;
     width: 230px;
-    padding:1rem;
+    padding: 1rem;
     height: auto;
-    
 }
 
     .more-dropdown-content.show {
@@ -225,17 +348,45 @@ html, body {
     font-weight: bold;
     color: black;
     text-decoration: none;
-    width: 190px;
 }
 
     .nav-link:hover {
+        border-radius: 14px;
+        background-color:whitesmoke;
+        
+    }
+
+.dropdown-btn {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: black;
+    text-decoration: none;
+    font-size: 1em;
+    font-family: var(--font-standard);
+    margin: 10px;
+   
+}
+
+    .dropdown-btn:hover {
         border-radius: 14px;
         background-color: whitesmoke;
     }
 
 .edit-text {
     margin-right: 70px;
-    color: #333;   
+    color: #333;
+    color: var(--card-text-color);
+}
+
+.member-text {
+    color: var(--card-text-color);
 }
 
 .delete-button {
@@ -372,8 +523,8 @@ h6, .h6 {
     margin: 10px;
     font-size: 1em;
     font-weight: bolder;
-    text-decoration:none;
-    color: gray;
+    text-decoration: none;
+    color: var(--card-text-color)
 }
 
     .project-links:hover {
@@ -431,7 +582,7 @@ h6, .h6 {
 
 .btn-blue {
     color: var(--btn-blue-text-color);
-    border-color: var(--btn-blue-border-color);
+   
     background-color: var(--btn-blue-background-color);
 }
 
@@ -613,20 +764,50 @@ section > .content {
     }
 
 /* custom modals */
-#addClientModal  .modal-content {
-    width: 450px;
+#addClientModal .modal-content {
+    overflow-y: auto;
+    width: 530px;
+    max-height: 90vh;
+    background-color: var(--modal-background-color);
+    color: var(--card-text-color);
 }
+    #addClientModal .modal-content input, textarea, select {
+        background-color: var(--modal-background-color);
+        color: var(--card-text-color);
+    }
 
 #addProjectModal .modal-content {
-    width: 450px;
+    overflow-y: auto;
+    width: 550px;
+    max-height: 100vh;
+    background-color: var(--modal-background-color);
+    color: var(--card-text-color);
 }
+
+    #addProjectModal .modal-content input, textarea, select {
+        border: 0.2px solid var(--form-border-color) !important;
+        background-color: var(--modal-background-color);
+        color: var(--card-text-color);
+       
+    }
 
 #addStatusModal .modal-content {
     width: 450px;
 }
 #updateProjectModal .modal-content {
-    width: 450px;
+    overflow-y: auto;
+    width: 550px;
+    max-height: 90vh;
+    background-color: var(--modal-background-color);
+    color: var(--card-text-color);
 }
+
+    #updateProjectModal .modal-content input, textarea, select{
+        background-color: var(--modal-background-color);
+        color: var(--card-text-color);
+        border: 0.2px solid var(--form-border-color);
+       
+    }
 
 
 
@@ -640,22 +821,56 @@ section > .content {
 
 .project-item {
     position: relative;
-    background-color: white;
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--card-border-color);
+    background-color: var(--card-background-color);
+    color: var(--card-text-color);
     border-radius: 15px;
     padding: 16px;
     width: 450px;
     height: 276px;
-    margin:5px;
+    margin: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s, box-shadow 0.2s;
-    
-    /* Project */
 }
 
     .project-item:hover {
         transform: translateY(-5px); 
         box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); 
+    }
+
+    .project-item p.time-left {
+        font-size: 14px;
+        color: gray;
+        font-weight: bold;
+        color: #d9534f;
+        text-align: left;
+        position: absolute;
+        bottom: 10px;
+        padding: 10px;
+        background-color: var(--error-background-color);
+        border-radius:20px;
+       
+       
+    }
+
+.member-item {
+    position: relative;
+    border: 1px solid var(--card-border-color);
+    background-color: var(--card-background-color);
+    color: var(--card-text-color);
+    border-radius: 15px;
+    padding: 16px;
+    width: 300px;
+    height: 460px;
+    margin: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-align: center;
+}
+
+    .member-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
     }
 
 .title-row {
@@ -668,8 +883,48 @@ section > .content {
     
     width: 56px;
     height: 56px;
- 
+    
 }
+
+.member-icon {
+    width: 156px;
+    height: 156px;
+    margin-top: 35px;
+}
+
+.name-container {
+    display: flex;
+    justify-content: center;
+    gap: 8px; 
+}
+
+.title-text {
+   
+    background-color: whitesmoke;
+    border-radius: 5px;
+    padding: 5px;
+    max-width: fit-content;
+    margin: 0 auto;
+    margin-top: 5px;
+}
+
+.message-btn {
+    background-color: whitesmoke;
+    border-radius: 10px;
+    padding: 16px;
+    border: none;
+    width: 200px;
+    cursor: pointer;
+    font-family: var(--font);
+    font-weight: bold;
+    border-color: var(--btn-border-color);
+   
+}
+    .message-btn:hover {
+        background-color: lightgray;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    }
+
 .upload-container {
     display: flex;
     justify-content: center;
@@ -682,6 +937,7 @@ section > .content {
     left: 686px;
     top: 126px;
 }
+
 
 
 

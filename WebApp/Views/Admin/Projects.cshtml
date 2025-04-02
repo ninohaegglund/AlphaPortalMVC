@@ -13,7 +13,7 @@
    
     <main class="content">
         <div class="surface">
-
+            
             <a class="project-links" href="@Url.Action("Index", "Projects")">All</a>
 
             <a class="project-links" href="@Url.Action("Index", "Projects", new { status = false })">Ongoing</a>
@@ -25,6 +25,27 @@
                 {
                     @foreach (var project in Model)
                     {
+                        var endDate = project.EndDate;
+                        var remainingTime = endDate.HasValue ? endDate.Value - DateTime.Now : TimeSpan.Zero;
+
+                        string timeLeftMessage = "Ongoing";
+
+                        
+                        if (endDate.HasValue)
+                        {
+                            if (remainingTime.TotalDays > 0)
+                            {
+                                // Display days left
+                                timeLeftMessage = $"{Math.Ceiling(remainingTime.TotalDays)} day{(remainingTime.TotalDays > 1 ? "s" : "")} left";
+                            }
+                            else if (remainingTime.TotalDays <= 0)
+                            {
+                                // If the end date has passed
+                                timeLeftMessage = "Project Completed";
+                            }
+                        }
+
+
                         <div class="project-item">
                             <div class="title-row">
                                 <img src="~/images/Alpha-portal-project-icons/purple-red.svg" class="project-icon" />
@@ -41,20 +62,23 @@
                                
                             </div>
                             <p>@project.Description</p>
-                            <p>@project.Id</p>
+                            <p class="time-left"><i class="fa fa-clock"></i> @timeLeftMessage</p>
+                           
+                            
+                            
 
                             @*Dropdown-meny:*@
 
                             <div class="more-dropdown-content" id="dropdown-@project.Id" style="display:none;">
-                                <button data-modal="true" data-target="#updateProjectModal" id="logout" type="button" class="nav-link btn btn-link text-dark border-0">
+                                <button data-modal="true" data-target="#updateProjectModal" id="logout" type="button" class="dropdown-btn">
                                     <img src="~/images/icons/Edit.svg" alt="More icon" class="more-icon"> <span class="edit-text">Edit</span>
                                 </button>
 
-                                <button id="logout" type="button" class="nav-link btn btn-link text-dark border-0">
+                                <button id="logout" type="button" class="dropdown-btn">
                                     <img src="~/images/icons/Add User.svg" alt="More icon" class="more-icon"> <span class="member-text">Add Member</span>
                                 </button>
 
-                                <button id="logout" type="button" class="nav-link btn btn-link text-dark border-0 delete-button" data-project-id="@project.Id">
+                                <button id="logout" type="button" class="dropdown-btn delete-button" data-project-id="@project.Id">
                                     <img src="~/images/icons/Delete.svg" alt="More icon" class="more-icon"> <span class="delete-text">Delete Project</span>
                                 </button>
                             </div>
