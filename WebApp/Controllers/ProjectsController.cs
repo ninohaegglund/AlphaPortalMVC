@@ -11,6 +11,7 @@ namespace WebApp.Controllers;
 
 public class ProjectsController : Controller
 {
+    
     private readonly IProjectService _projectService;
 
     public ProjectsController(IProjectService projectService)
@@ -18,8 +19,9 @@ public class ProjectsController : Controller
         _projectService = projectService;
 
     }
+    
 
-   
+
     [HttpGet("details/{id}")]
     public async Task<IActionResult> GetProject(int id)
     {

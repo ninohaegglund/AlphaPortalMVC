@@ -236,6 +236,32 @@ html, body {
 
 }
 
+.profile-logout {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: var(--navlink-text-color);
+    margin: 0 0.7rem;
+    margin-bottom: 0.5rem;
+    font-size: 1em;
+    font-family: var(--font-standard);
+    font-weight: 600;
+    background-color: var(--navlink-background-color);
+    border-radius: 1rem;
+    padding: 1rem 0.7rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: background-color 0.1s ease-in-out, border-color 0.1s ease-in-out, color 0.1s ease-in-out;
+}
+
+    .profile-logout:hover {
+        background: var(--navlink-background-hover-color);
+        color: var(--navlink-text-hover-color);
+        text-decoration: none;
+    }
+
 .profile-action {
     display: flex;
     align-items: center;
@@ -824,7 +850,13 @@ section > .content {
 
 #login {
     color: var(--card-text-color);
-} 
+}
+
+.divider {
+    height: 1px;
+    background-color: var(--border-color);
+    
+}
 
 
 
