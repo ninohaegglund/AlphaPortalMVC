@@ -20,9 +20,9 @@
                     {
                         <div class="member-item">
                             <img src="~/images/avatars/avatar-template-4.svg" class="member-icon" />
-                            <div class="name-container">
-                                <h3>@client.FirstName</h3>
-                                <h3>@client.LastName</h3>
+                            <div class="member-name-container">
+                                <h3>@client.FirstName</h3>                                   
+                                <h3>@client.LastName</h3>                                                              
                             </div>
 
                             <a href="javascript:void(0)" class="more-avatar" data-dropdown="true" data-target="#dropdown-@client.Id">
@@ -37,14 +37,14 @@
 
                             <div class="more-dropdown-content" id="dropdown-@client.Id" style="display:none;">
                                 <button data-modal="true" data-target="#updateClientModal" id="logout" type="button" class="dropdown-btn">
-                                    <img src="~/images/icons/Edit.svg" alt="More icon" class="more-icon"> <span class="edit-text">Edit</span>
+                                    <i class="fas fa-pen"></i> <span class="edit-text">Edit</span>
                                 </button>
 
 
                                 <button id="logout" type="button" class="dropdown-btn delete-button" data-client-id="@client.Id">
-                                    <img src="~/images/icons/Delete.svg" alt="More icon" class="more-icon"> <span class="delete-text">Delete Member</span>
+                                    <i class="fas fa-trash"></i> <span class="delete-text">Delete Member</span>
                                 </button>
-                            </div>
+                            </div>  
 
                         </div>
                     }

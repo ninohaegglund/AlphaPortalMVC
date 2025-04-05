@@ -28,23 +28,24 @@
                         var endDate = project.EndDate;
                         var remainingTime = endDate.HasValue ? endDate.Value - DateTime.Now : TimeSpan.Zero;
 
-                        string timeLeftMessage = "Ongoing";
+                        string timeLeftMessage;
 
-                        
-                        if (endDate.HasValue)
+                        if (project.Status)
                         {
-                            if (remainingTime.TotalDays > 0)
-                            {
-                                
-                                timeLeftMessage = $"{Math.Ceiling(remainingTime.TotalDays)} day{(remainingTime.TotalDays > 1 ? "s" : "")} left";
-                            }
-                            else if (remainingTime.TotalDays <= 0)
-                            {
-                                
-                                timeLeftMessage = "Project Completed";
-                            }
+                            timeLeftMessage = "Project Completed";
                         }
-
+                        else if (endDate.HasValue && remainingTime.TotalDays > 0)
+                        {
+                            timeLeftMessage = $"{Math.Ceiling(remainingTime.TotalDays)} day{(remainingTime.TotalDays > 1 ? "s" : "")} left";
+                        }
+                        else if (endDate.HasValue && remainingTime.TotalDays <= 0)
+                        {
+                            timeLeftMessage = "Project Overdue";
+                        }
+                        else
+                        {
+                            timeLeftMessage = "Ongoing";
+                        }
 
                         <div class="project-item">
                             <div class="title-row">
@@ -71,15 +72,15 @@
 
                             <div class="more-dropdown-content" id="dropdown-@project.Id" style="display:none;">
                                 <button data-modal="true" data-target="#updateProjectModal" id="logout" type="button" class="dropdown-btn">
-                                    <img src="~/images/icons/Edit.svg" alt="More icon" class="more-icon"> <span class="edit-text">Edit</span>
+                                    <i class="fas fa-pen"></i> <span class="edit-text">Edit</span>
                                 </button>
 
                                 <button id="logout" type="button" class="dropdown-btn">
-                                    <img src="~/images/icons/Add User.svg" alt="More icon" class="more-icon"> <span class="member-text">Add Member</span>
+                                    <i class="fas fa-user-plus"></i><span class="member-text">Add Member</span>
                                 </button>
 
                                 <button id="logout" type="button" class="dropdown-btn delete-button" data-project-id="@project.Id">
-                                    <img src="~/images/icons/Delete.svg" alt="More icon" class="more-icon"> <span class="delete-text">Delete Project</span>
+                                    <i class="fas fa-trash"></i> <span class="delete-text">Delete Project</span>
                                 </button>
                             </div>
                        
