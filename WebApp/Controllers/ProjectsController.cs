@@ -67,7 +67,7 @@ public class ProjectsController : Controller
         return StatusCode(result);
     }
 
-    [HttpPut]
+    [HttpPut("admin/projects/{id}")]
     public async Task<IActionResult> Update(int id, ProjectUpdateDto dto)
     {
 

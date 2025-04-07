@@ -631,9 +631,17 @@ h6, .h6 {
 }
 
 .btn-submit {
+    color: var(--btn-blue-text-color);
     width: 100%;
+    background-color: var(--btn-blue-background-color);
     margin-top: 2rem;
 }
+
+    .btn-submit:hover {
+        color: var(--btn-blue-text-hover-color);
+        border-color: var(--btn-blue-border-hover-color);
+        background-color: var(--btn-blue-background-hover-color);
+    }
 
 .btn-close {
     font-size: 2em;
@@ -1027,6 +1035,55 @@ section > .content {
     left: 686px;
     top: 126px;
 }
+
+.card {
+    background-color: var(--modal-background-color);
+    border: 1px solid var(--modal-border-color);
+    color: var(--modal-text-color);
+    margin: 2rem;
+    padding: 1.2rem 1.5rem;
+    border-radius: 16px;
+    width: 100%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+    .card .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .card .card-body {
+        margin: 0 2rem;
+    }
+
+    .card .card-footer {
+        margin-top: 2rem;
+    }
+
+
+#login {
+    width: 600px;
+    text-align: center;
+    margin:auto;
+}
+
+    #login .card-header {
+        justify-content: center;
+        margin-top: 2rem;
+    }
+
+#signup {
+    width: 600px;
+    text-align: center;
+    margin:auto;
+}
+
+    #signup .card-header {
+        justify-content: center;
+        margin-top: 2rem;
+    }
 
 
 

@@ -6,7 +6,7 @@ using WebApp.Models;
 
 namespace WebApp.Controllers;
 
-/* public class AuthController(IAuthService authService) : Controller
+public class AuthController(IAuthService authService) : Controller
 {
     private readonly IAuthService _authService = authService;
 
@@ -94,4 +94,4 @@ namespace WebApp.Controllers;
     }
 }
 
-*/
+

@@ -1,27 +1,33 @@
 ﻿<header>
+    @if (User.Identity.IsAuthenticated)
+    {
     <div class="header-icons">
-      
-        <a href="#" class="header-icon" title="Notifications">
-            <i class="fas fa-bell"></i>
-            <span class="notification-badge">3</span> 
-        </a>
-
        
-        <a href="javascript:void(0)" class="header-icon" title="Settings" data-dropdown="true" data-target="#loginPartialContainer">
-            <i class="fa-duotone fa-solid fa-cog"></i>
-        </a>
 
-        <a href="" class="user-avatar">
-            <img src="~/images/avatars/avatar-template.svg" alt="User Avatar" class="avatar-icon">
-        </a>
+            <a href="#" class="header-icon" title="Notifications">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">3</span> 
+            </a>
 
-    
-    </div>
 
-  
-   
+            <a href="javascript:void(0)" class="header-icon" title="Settings" data-dropdown="true" data-target="#loginPartialContainer">
+                <i class="fa-duotone fa-solid fa-cog"></i>
+            </a>
+
+            <a href="" class="user-avatar">
+                <img src="~/images/avatars/avatar-template.svg" alt="User Avatar" class="avatar-icon">
+            </a>
+
+
+            </div>
+
+
+
+         
+
+            <div id="loginPartialContainer" class="login-dropdown hidden">
+                <partial name="_LoginPartial" />
+            </div>
+          
+     }
 </header>
-
-<div id="loginPartialContainer" class="login-dropdown hidden">
-    <partial name="_LoginPartial" />
-</div>
