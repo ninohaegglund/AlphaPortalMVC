@@ -71,7 +71,21 @@
                             @*Dropdown-meny:*@
 
                             <div class="more-dropdown-content" id="dropdown-@project.Id" style="display:none;">
-                                <button data-modal="true" data-target="#updateProjectModal" id="logout" type="button" class="dropdown-btn">
+                                @*Hämtar data från projektet*@
+                                <button 
+                                    data-modal="true" 
+                                    data-target="#updateProjectModal"
+                                    data-id="@project.Id"
+                                    data-name="@project.Name"
+                                    data-client="@project.ClientName"
+                                    data-description="@project.Description"
+                                    data-start="@project.StartDate.ToString("yyyy-MM-dd")"
+                                    data-end="@project.EndDate?.ToString("yyyy-MM-dd")"
+                                        data-budget="@project.Budget?.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture)"
+                                        data-status="@project.Status.ToString().ToLower()"
+                                    id="logout" 
+                                    type="button" 
+                                    class="dropdown-btn edit-button">
                                     <i class="fas fa-pen"></i> <span class="edit-text">Edit</span>
                                 </button>
 

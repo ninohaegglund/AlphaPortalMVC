@@ -30,7 +30,6 @@ public class ProjectsController : Controller
     }
     
 
-
     [HttpGet]
     public async Task<IActionResult> Index(bool? status)
     {
@@ -67,8 +66,8 @@ public class ProjectsController : Controller
         return StatusCode(result);
     }
 
-    [HttpPut("admin/projects/{id}")]
-    public async Task<IActionResult> Update(int id, ProjectUpdateDto dto)
+    [HttpPost("admin/projects/{id}")]
+    public async Task<IActionResult> Update(int id, [FromBody] ProjectUpdateDto dto)
     {
 
         if (!ModelState.IsValid)
@@ -80,15 +79,17 @@ public class ProjectsController : Controller
                     kvp => kvp.Value?.Errors.Select(x => x.ErrorMessage).ToArray()
                 );
 
-            return BadRequest(new { errors });
+            return Json(new { success = false, errors });
+
         }
 
         var result = await _projectService.UpdateProjectAsync(id, dto);
 
         if (result)
-            return Ok();
+            return Json(new { success = true });
 
-        return StatusCode(500);
+        return Json(new { success = false });
+
 
     }
 
