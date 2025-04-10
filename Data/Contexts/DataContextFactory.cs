@@ -10,7 +10,7 @@ public class DataContextFactory : IDesignTimeDbContextFactory<DataContext>
     {
  
         var optionsBuilder = new DbContextOptionsBuilder<DataContext>();
-        optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\nino9\Documents\Nackademin\ASP.NET_1\AlphaPortalMVC\Data\Contexts\Database\alpha_database.mdf;Integrated Security=True;Connect Timeout=30");
+        optionsBuilder.UseSqlServer(@"Server=tcp:nino-sqlserver.database.windows.net,1433;Initial Catalog=projectdb-nino;Persist Security Info=False;User ID=SqlAdmin;Password=nino123!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
 
         return new DataContext(optionsBuilder.Options);
     }
