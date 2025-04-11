@@ -1,4 +1,5 @@
 ﻿@using WebApp.Models
+
 @model LoginViewModel
 @{
     ViewData["Title"] = "Login";
@@ -27,6 +28,12 @@
             <div class="form-group">
                 <label asp-for="Password"></label>
                 <input asp-for="Password" value="@Model?.Password" />
+            </div>
+            <div class="form-group remember-me">
+                <label>
+                    <input asp-for="RememberMe" /> 
+                    <span>Remember me</span>
+                </label>
             </div>
 
             <div class="form-group">

@@ -1,6 +1,7 @@
 ﻿using Business.Models;
 using Business.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using WebApp.Models;
 
@@ -76,7 +77,10 @@ public class AuthController(IAuthService authService) : Controller
             var result = await _authService.LoginAsync(model.Email, model.Password, model.RememberMe);
             if (result)
             {
+             
+
                 return LocalRedirect(returnUrl);
+
             }
         }
 

@@ -8,7 +8,7 @@ namespace Business.Services;
 
 public interface IAuthService
 {
-    Task<bool> LoginAsync(string email, string password, bool rememberMe = false);
+    Task<bool> LoginAsync(string email, string password, bool rememberMe);
     Task LogoutAsync();
     Task<IdentityResult> SignUpAsync(SignUpDto dto, string roleName = "User");
     Task<bool> UserExistsAsync(string email);
@@ -19,8 +19,12 @@ public class AuthService(SignInManager<UserEntity> signInManager, UserManager<Us
     private readonly SignInManager<UserEntity> _signInManager = signInManager;
     private readonly UserManager<UserEntity> _userManager = userManager;
 
-    public async Task<bool> LoginAsync(string email, string password, bool rememberMe = false)
+    public async Task<bool> LoginAsync(string email, string password, bool rememberMe)
     {
+        var user = await _userManager.FindByEmailAsync(email);
+        if (user == null)
+            return false;
+
         var result = await _signInManager.PasswordSignInAsync(email, password, rememberMe, false);
         return result.Succeeded;
     }

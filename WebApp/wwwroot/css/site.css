@@ -1074,6 +1074,31 @@ section > .content {
         margin-top: 2rem;
     }
 
+    #login .form-group label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+       
+    }
+
+
+    #login .remember-me {
+        text-align: left;
+        justify-content: flex-start;
+        display: flex;
+
+    }
+
+        #login .remember-me label {
+            white-space: nowrap;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            gap: 8px;
+        }
+
+
 #signup {
     width: 600px;
     text-align: center;
